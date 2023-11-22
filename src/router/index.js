@@ -2,9 +2,12 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 
 const routes = [
-
   {
     path: '/',
+    redirect: { name: 'Home' }
+  },
+  {
+    path: '/academy-bls-aggregation-demo/',
     name: 'home',
     component: HomeView
   },
