@@ -1,11 +1,7 @@
 <template>
   <div>
-
-
-
     <div class="flex flex-wrap flex-row justify-center gap-1 pb-5 mx-10">
       <mainButton @click="generateKey" title="Generate Keys" />
-
     </div>
 
     <div class="mb-5 relative" v-if="publicKeyHex">
@@ -16,7 +12,7 @@
         class="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-lg focus:ring-red-500 focus:border-red-500 "
         readonly>
       <button
-        class="text-white absolute right-2.5 bottom-2.5 bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-md px-4 py-2"
+        class="text-white absolute right-2.5 bottom-2.5 bg-avalanche-red hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-md px-4 py-2"
         @click="this.copyPublicKey">
         Copy
       </button>
@@ -33,7 +29,7 @@
         class="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-lg focus:ring-red-500 focus:border-red-500"
         readonly>
       <button
-        class="text-white absolute right-2.5 bottom-2.5 bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-md px-4 py-2"
+        class="text-white absolute right-2.5 bottom-2.5 bg-avalanche-red hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-md px-4 py-2"
         @click="this.copyPrivateKey">
         Copy
       </button>

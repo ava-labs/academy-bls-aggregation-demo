@@ -1,24 +1,24 @@
 <template>
-  <TitleCard title="Aggregate Keys" />
-  <div class="flex justify-center text-4xl pb-2">Keys</div>
+  <div>
+    <TitleCard title="Aggregate Keys" />
+    <div class="flex justify-center text-4xl pb-2">Keys</div>
 
-  <div class="flex justify-center mb-4">
-    <EditableArea
-      v-model="message"
-      :noHTML="false"
-      placeholderValue="Enter keys separated by commas like: addf63...b5dcac,b91413...664e9a"
-      class="h-52 overflow-auto w-4/5 break-words border-2 rounded-xl border-red-400 text-2xl p-8 xl:w-3/5"
-    ></EditableArea>
-  </div>
+    <div class="flex justify-center mb-4">
+      <EditableArea v-model="message" :noHTML="false"
+        placeholderValue="Enter keys separated by commas like: addf63...b5dcac,b91413...664e9a"
+        class="h-52 overflow-auto w-4/5 break-words border-2 rounded-xl border-red-400 text-2xl p-8 xl:w-3/5">
+      </EditableArea>
+    </div>
 
-  <div class="flex flex-wrap flex-row justify-center gap-1 pb-5 mx-10">
-    <mainButton @click="aggregateKeys" title="Aggregate Keys" />
-  </div>
+    <div class="flex flex-wrap flex-row justify-center gap-1 pb-5 mx-10">
+      <mainButton @click="aggregateKeys" title="Aggregate Keys" />
+    </div>
 
-  <div class="mb-5" v-if="keyDisplay">
-    <div class="flex justify-center text-4xl pb-2">Aggregated Key</div>
-    <TextDisplay :displayText="this.aggregatedKey" />
-    <mainButton @click="this.copyAggregatedKey" title="Copy" />
+    <div class="mb-5" v-if="keyDisplay">
+      <div class="flex justify-center text-4xl pb-2">Aggregated Key</div>
+      <TextDisplay :displayText="this.aggregatedKey" />
+      <mainButton @click="this.copyAggregatedKey" title="Copy" />
+    </div>
   </div>
 </template>
 

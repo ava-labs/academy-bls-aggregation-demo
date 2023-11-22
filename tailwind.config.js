@@ -2,11 +2,15 @@
 
 module.exports = {
   content: [
-    './public/**/*.html', 
+    './public/**/*.html',
     './src/**/*.{vue,js,ts,jsx,tsx}',
     './node_modules/flowbite/**/*.js'],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'avalanche-red': '#E84142',
+      },
+    },
   },
   plugins: [
     require('flowbite/plugin')

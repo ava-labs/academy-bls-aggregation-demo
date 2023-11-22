@@ -1,6 +1,6 @@
 <template>
-  <div class="text-5xl mb-5 mt-12 font-bold">
-      {{this.title}}
+  <div class="text-5xl mb-5 mt-10 font-bold">
+    {{ this.title }}
   </div>
 </template>
 
@@ -12,7 +12,7 @@ export default {
 
 
   }),
-  props:{
+  props: {
     title: String
   }
 };
