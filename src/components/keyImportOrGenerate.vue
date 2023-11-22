@@ -1,9 +1,6 @@
 <template>
     <div class="flex flex-wrap flex-row justify-center gap-1 pb-5 mx-10">
       <mainButton v-if="!privKey" @click="generateKey" title="🔑 Generate Keys" />
-      <mainButton v-if="keysGenerated" @click="saveFile" title="💾 Save Keys" />
-      <label v-if="!keysGenerated" for="files" class="select-none transition-colors duration-500 ease-in-out bg-purple-400 rounded-md p-3 text-white font-sans font-semibold text-3xl shadow-xl cursor-pointer hover:bg-purple-600 min-w-[290px] sm:min-w-0">⬆️💾 Import Key</label>
-      <input @change="processKey" id="files" class="hidden" type="file">
     </div>
 
     <div v-if="this.signed" class="flex justify-center text-2xl pb-2">Signature</div>
