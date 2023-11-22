@@ -3,7 +3,7 @@ module.exports = defineConfig({
   transpileDependencies: true,
 
   publicPath: process.env.NODE_ENV === 'production'
-    ? '/academy-bls-aggregation-demo'
+    ? '/academy-bls-aggregation-demo/'
     : '/',
 
   pluginOptions: {
