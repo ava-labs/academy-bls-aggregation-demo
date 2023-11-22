@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "es5",
     "module": "esnext",
-    "baseUrl": "./",
+    "baseUrl": "./academy-bls-aggregation-demo/",
     "moduleResolution": "node",
     "paths": {
       "@/*": [
@@ -15,6 +15,5 @@
       "dom.iterable",
       "scripthost"
     ]
-  
   }
 }
