@@ -1,6 +1,6 @@
 <template>
   <div class="bg-avalanche-red w-full py-12 mb-8 px-4">
-    <h1 class="text-6xl max-w-4xl mx-auto text-white font-medium">Signing a Message</h1>
+    <h1 class="text-6xl max-w-4xl mx-auto text-white font-medium">Using a Signature Scheme</h1>
   </div>
 
   <div class="max-w-4xl mx-auto text-xl space-y-4 px-4">
