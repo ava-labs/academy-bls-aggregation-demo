@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 import SignatureSchemeView from '../views/SignatureSchemeView.vue'
 import MultiSignatureSchemeView from '../views/MultiSignatureSchemeView.vue'
 
@@ -8,12 +8,12 @@ const routes = [
     redirect: { name: 'signatureScheme' }
   },
   {
-    path: '/academy-bls-aggregation-demo/',
+    path: '/',
     name: 'signatureScheme',
     component: SignatureSchemeView
   },
   {
-    path: '/academy-bls-aggregation-demo/multi',
+    path: '/multi',
     name: 'multiSignatureScheme',
     component: MultiSignatureSchemeView,
   },
@@ -46,7 +46,7 @@ const routes = [
 ]
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHashHistory(),
   routes
 })
 
