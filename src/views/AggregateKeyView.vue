@@ -1,23 +1,51 @@
 <template>
-  <div>
-    <TitleCard title="Aggregate Keys" />
-    <div class="flex justify-center text-4xl pb-2">Keys</div>
-
-    <div class="flex justify-center mb-4">
-      <EditableArea v-model="message" :noHTML="false"
-        placeholderValue="Enter keys separated by commas like: addf63...b5dcac,b91413...664e9a"
-        class="h-52 overflow-auto w-4/5 break-words border-2 rounded-xl border-red-400 text-2xl p-8 xl:w-3/5">
-      </EditableArea>
+  <div class="flex flex-auto space-x-12">
+    <div class="flex-auto">
+      <label for="publicKeyA" class="block mb-2 text-xl font-medium text-gray-900 dark:text-white">Signature</label>
+      <div class="relative">
+        <textarea id="publicKeyA" rows="4"
+          class="block p-2.5 w-full text-xl text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-red-500 focus:border-red-500"
+          v-model="publicKeyA">
+                                                                                                    </textarea>
+        <button
+          class="text-white absolute right-2.5 top-2.5 bg-avalanche-red hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-md px-4 py-2"
+          @click="this.pastePublicKeyA">
+          Paste
+        </button>
+      </div>
     </div>
 
-    <div class="flex flex-wrap flex-row justify-center gap-1 pb-5 mx-10">
-      <mainButton @click="aggregateKeys" title="Aggregate Keys" />
+    <div class="flex-auto">
+      <label for="publicKeyB" class="block mb-2 text-xl font-medium text-gray-900 dark:text-white">Signature</label>
+      <div class="relative">
+        <textarea id="publicKeyB" rows="4"
+          class="block p-2.5 w-full text-xl text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-red-500 focus:border-red-500"
+          v-model="publicKeyB"> </textarea>
+        <button
+          class="text-white absolute right-2.5 top-2.5 bg-avalanche-red hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-md px-4 py-2"
+          @click="this.pastePublicKeyB">
+          Paste
+        </button>
+      </div>
     </div>
 
-    <div class="mb-5" v-if="keyDisplay">
-      <div class="flex justify-center text-4xl pb-2">Aggregated Key</div>
-      <TextDisplay :displayText="this.aggregatedKey" />
-      <mainButton @click="this.copyAggregatedKey" title="Copy" />
+  </div>
+
+  <mainButton @click="aggregateKeys" title="Aggregate Public Keys" />
+
+  <div class="mb-5" v-if="this.keyDisplay">
+    <label for="aggregatedPublicKey" class="block mb-2 text-xl font-medium text-gray-900 dark:text-white">Aggregated
+      Public Key</label>
+    <div class="relative">
+      <textarea id="aggregatedPublicKey" rows="4"
+        class="block p-2.5 w-full text-xl text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-red-500 focus:border-red-500"
+        :value="this.aggregatedKey">
+                                                                  </textarea>
+      <button
+        class="text-white absolute right-2.5 top-2.5 bg-avalanche-red hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-md px-4 py-2"
+        @click="this.copyAggregatedKey">
+        Copy
+      </button>
     </div>
   </div>
 </template>
@@ -26,10 +54,7 @@
 import { defineComponent } from "vue";
 
 // Components
-import TitleCard from "@/components/TitleCard.vue";
 import mainButton from "@/components/mainButton.vue";
-import TextDisplay from "@/components/TextDisplay.vue";
-import EditableArea from "@/components/EditableArea.vue";
 import helpers from "@/helperFunctions/helperFunctions.js";
 import { useToast } from "vue-toastification";
 
@@ -41,27 +66,35 @@ export default defineComponent({
   },
   data() {
     return {
+      publicKeyA: "",
+      publicKeyB: "",
       aggregatedKey: "",
       keyDisplay: false,
-      message: "",
     };
   },
 
   components: {
-    TitleCard,
     mainButton,
-    EditableArea,
-    TextDisplay,
   },
   methods: {
 
+    async pastePublicKeyA() {
+      this.publicKeyA = await navigator.clipboard.readText();
+      this.toast.success("Pasted Public Key");
+    },
+
+    async pastePublicKeyB() {
+      this.publicKeyB = await navigator.clipboard.readText();
+      this.toast.success("Pasted Public Key");
+    },
+
     async aggregateKeys() {
-      if (this.message == "" || this.message == null) {
-        this.toast.error("Invalid Message: Please enter valid message");
+      if (this.publicKeyA == "" || this.publicKeyA == null || this.publicKeyB == "" || this.publicKeyB == null) {
+        this.toast.error("Invalid Message: Please enter valid Public Keys");
         return;
       }
 
-      var keyArray = this.message.split(",");
+      var keyArray = [this.publicKeyA, this.publicKeyB];
 
       try {
         var hexAggregateKey = await helpers.aggKey(keyArray);

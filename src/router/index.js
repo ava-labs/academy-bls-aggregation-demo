@@ -1,15 +1,21 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import SignatureSchemeView from '../views/SignatureSchemeView.vue'
+import MultiSignatureSchemeView from '../views/MultiSignatureSchemeView.vue'
 
 const routes = [
   {
     path: '/',
-    redirect: { name: 'Home' }
+    redirect: { name: 'signatureScheme' }
   },
   {
     path: '/academy-bls-aggregation-demo/',
-    name: 'home',
-    component: HomeView
+    name: 'signatureScheme',
+    component: SignatureSchemeView
+  },
+  {
+    path: '/academy-bls-aggregation-demo/multi',
+    name: 'multiSignatureScheme',
+    component: MultiSignatureSchemeView,
   },
   {
     path: '/generate',
@@ -36,28 +42,7 @@ const routes = [
     path: '/verify',
     name: 'verify',
     component: () => import(/* webpackChunkName: "verify" */ '../views/VerifyView.vue')
-  },
-  {
-    path: '/verify-group',
-    name: 'verify-group',
-    component: () => import(/* webpackChunkName: "verify-group" */ '../views/VerifyGroup.vue')
-  },
-  {
-    path: '/create-group',
-    name: 'create-group',
-    component: () => import(/* webpackChunkName: "create-group" */ '../views/CreateGroupView.vue')
-  },
-  {
-    path: '/lobby',
-    name: 'lobby',
-    component: () => import(/* webpackChunkName: "lobby" */ '../views/LobbyView.vue')
-  },
-  {
-    path: '/j',
-    name: 'join',
-    component: () => import(/* webpackChunkName: "lobby" */ '../views/JoinView.vue')
   }
-
 ]
 
 const router = createRouter({

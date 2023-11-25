@@ -24,10 +24,6 @@
       <TitleCard title="Generate Keys" />
       <p>Start by generating a Key Pair consisting of a Public and Secret Key.</p>
       <GenerateView />
-      <!--div class="flex flex-auto space-x-12">
-        <GenerateView class="flex-auto" />
-        <GenerateView class="flex-auto" />
-      </div-->
     </div>
 
     <div class="space-y-4">
@@ -61,7 +57,7 @@ import SignView from "@/views/SignView.vue";
 import VerifyView from "./VerifyView.vue";
 
 export default defineComponent({
-  name: "HomeView",
+  name: "SignatureSchemeView",
   data() {
     return {
       msg: "Test"

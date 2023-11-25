@@ -1,33 +1,53 @@
 <template>
-  <div>
-    <TitleCard title="Aggregate Signatures" />
-    <div class="flex flex-wrap flex-row justify-center gap-1 pb-5 mx-10">
-      <div class="flex justify-center relative">
-        <div class="text-xl font-bold bg-[#f7d596] text-black p-1 text-center rounded-md absolute -top-9" v-if="hover">
-          Accepts a .csv of raw signatures</div>
-        <label @mouseover="hover = true" @mouseleave="hover = false" for="files"
-          class="select-none transition-colors duration-500 ease-in-out bg-purple-400 rounded-md p-3 text-white font-sans font-semibold text-3xl shadow-xl hover:bg-purple-600 text-center">⬆️💾
-          Import Signatures</label>
-        <input @change="processSignatures" id="files" class="hidden" type="file" />
+  <div class="flex flex-auto space-x-12">
+    <div class="flex-auto">
+      <label for="signatureA" class="block mb-2 text-xl font-medium text-gray-900 dark:text-white">Signature</label>
+      <div class="relative">
+        <textarea id="signatureA" rows="4"
+          class="block p-2.5 w-full text-xl text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-red-500 focus:border-red-500"
+          v-model="signatureA">
+                                                                                            </textarea>
+        <button
+          class="text-white absolute right-2.5 top-2.5 bg-avalanche-red hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-md px-4 py-2"
+          @click="this.pasteSignatureA">
+          Paste
+        </button>
       </div>
-      <mainButton @click="aggregateSignatures" title="💫 Aggregate Signatures" />
     </div>
 
-    <div class="flex justify-center text-4xl pb-2">Signatures</div>
-
-    <div class="flex justify-center mb-4">
-      <EditableArea placeholderValue="Enter signatures separated by commas like: 89c...ebb,bf8...0eb" v-model="message"
-        class="h-52 overflow-auto w-4/5 break-words border-2 rounded-xl border-yellow-800 text-2xl p-8 xl:w-3/5">
-      </EditableArea>
+    <div class="flex-auto">
+      <label for="signatureB" class="block mb-2 text-xl font-medium text-gray-900 dark:text-white">Signature</label>
+      <div class="relative">
+        <textarea id="sigantureB" rows="4"
+          class="block p-2.5 w-full text-xl text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-red-500 focus:border-red-500"
+          v-model="signatureB">
+                                                                                              </textarea>
+        <button
+          class="text-white absolute right-2.5 top-2.5 bg-avalanche-red hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-md px-4 py-2"
+          @click="this.pasteSignatureB">
+          Paste
+        </button>
+      </div>
     </div>
 
-    <div v-if="signatureDisplay">
-      <div class="flex justify-center text-4xl pb-2">Signature</div>
+  </div>
 
-      <TextDisplay class="mb-6" :displayText=this.aggregatedSignature />
+  <mainButton @click="aggregateSignatures" title="Aggregate Signatures" />
 
+  <div class="mb-5" v-if="this.signatureDisplay">
+    <label for="signature" class="block mb-2 text-xl font-medium text-gray-900 dark:text-white">Aggregated
+      Signature</label>
+    <div class="relative">
+      <textarea id="siganture" rows="4"
+        class="block p-2.5 w-full text-xl text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-red-500 focus:border-red-500"
+        :value="this.aggregatedSignature">
+                                                          </textarea>
+      <button
+        class="text-white absolute right-2.5 top-2.5 bg-avalanche-red hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-md px-4 py-2"
+        @click="this.copyAggregatedSignature">
+        Copy
+      </button>
     </div>
-
   </div>
 </template>
 
@@ -35,10 +55,7 @@
 import { defineComponent } from "vue";
 
 // Components
-import TitleCard from "@/components/TitleCard.vue";
 import mainButton from "@/components/mainButton.vue";
-import TextDisplay from "@/components/TextDisplay.vue";
-import EditableArea from "@/components/EditableArea.vue";
 import helpers from '@/helperFunctions/helperFunctions.js'
 import { useToast } from "vue-toastification";
 
@@ -50,61 +67,52 @@ export default defineComponent({
   },
   data() {
     return {
-      show: true,
-      hover: false,
+      signatureA: "",
+      signatureB: "",
       aggregatedSignature: "",
       signatureDisplay: false,
     };
   },
 
   components: {
-    TitleCard,
-    mainButton,
-    EditableArea,
-    TextDisplay
+    mainButton
   },
   methods: {
 
-    processSignatures(event) {
-      var rawFileData = event.target.files[0];
+    async pasteSignatureA() {
+      this.signatureA = await navigator.clipboard.readText();
+      this.toast.success("Pasted Signature");
+    },
 
-      var reader = new FileReader();
-      reader.readAsText(rawFileData, "UTF-8");
+    async pasteSignatureB() {
+      this.signatureB = await navigator.clipboard.readText();
+      this.toast.success("Pasted Signature");
+    },
 
-      // here we tell the reader what to do when it's done reading...
-      reader.onload = (readerEvent) => {
-        //trim the newlines and spaces
-        rawFileData = readerEvent.target.result.replace(/\s/g, '');
-        this.message = rawFileData
-      };
-      event.target.value = null;
+    copyAggregatedSignature() {
+      navigator.clipboard.writeText(this.aggregatedSignature);
+      this.toast.success("Copied Aggregated Signature to Clipboard");
     },
 
     async aggregateSignatures() {
 
-      if (this.message == "" || this.message == null) {
+      if (this.signatureA == "" || this.signatureA == null || this.signatureB == "" || this.signatureB == null) {
         this.toast.error("Invalid Signatures: Please enter signatures to aggregate");
         return
       }
-      var signatureArray = this.message.split(',')
+      var signatureArray = [this.signatureA, this.signatureB]
       try {
 
         var hexAggregateSignature = await helpers.aggSig(signatureArray)
         this.aggregatedSignature = await helpers.bufferToHex(hexAggregateSignature)
 
       } catch (error) {
-
         this.toast.error("Error aggregating signatures: " + error.message);
         return
       }
 
       this.toast.success("Signatures aggregated successfully");
       this.signatureDisplay = true
-
-      //await for the DOM to update
-      await this.$nextTick()
-      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })
-
     }
 
   },
