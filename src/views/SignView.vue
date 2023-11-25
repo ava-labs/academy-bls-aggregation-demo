@@ -1,12 +1,9 @@
 <template>
   <div>
-    <TitleCard title="Sign" />
-
     <div class="flex flex-col space-y-3 mb-5 relative">
       <label for="private-key" class="block text-xl font-medium text-gray-900 dark:text-white">
         Secret Key
       </label>
-      <p>Enter the Secret Key you've generated above:</p>
       <div class="relative">
         <input v-model="privKey" type="text" id="private-key"
           class="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-lg focus:ring-red-500 focus:border-red-500">
@@ -24,12 +21,11 @@
 
     <div class="flex flex-col space-y-3 mb-5 relative">
       <label for="message" class="block text-xl font-medium text-gray-900 dark:text-white">Your message</label>
-      <p>Pick a message you want to sign, e.g. "Per consensum ad astra":</p>
       <div class="relative">
         <textarea id="message" v-model="message" rows="4"
           class="block p-2.5 w-full text-lg text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-red-500 focus:border-red-500 "
           placeholder="Write your message here...">
-                    </textarea>
+                          </textarea>
         <button
           class="text-white absolute right-2.5 top-2.5 bg-avalanche-red hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-md px-4 py-2"
           @click="this.copyMessage">
@@ -49,7 +45,7 @@
         <textarea id="siganture" rows="4"
           class="block p-2.5 w-full text-xl text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-red-500 focus:border-red-500"
           :value="this.signature">
-                            </textarea>
+                                  </textarea>
         <button
           class="text-white absolute right-2.5 top-2.5 bg-avalanche-red hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-md px-4 py-2"
           @click="this.copySignature">
@@ -64,7 +60,6 @@
 import { defineComponent } from "vue";
 
 // Components
-import TitleCard from "@/components/TitleCard.vue";
 import mainButton from "@/components/mainButton.vue";
 import helpers from "@/helperFunctions/helperFunctions.js";
 import { useToast } from "vue-toastification";
@@ -122,7 +117,6 @@ export default defineComponent({
   },
 
   components: {
-    TitleCard,
     mainButton,
   },
 });

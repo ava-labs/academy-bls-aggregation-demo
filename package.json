@@ -2,6 +2,7 @@
   "name": "genthresh",
   "version": "0.1.0",
   "private": true,
+  "homepage": "/academy-bls-aggregation-demo/",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
