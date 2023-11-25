@@ -73,7 +73,7 @@
       <VerifyView />
     </div>
 
-    <div class="space-y-4">
+    <div class="space-y-4 mb-20">
       <TitleCard title="Conclusion" />
       <p>Congrats to going through the exercise and experiencing hands-on how we can utilize Siganture Aggregation. You
         will see in the next chapter about Avalanche Warp Messaging how Mutli-Signature schemes can enable secure and
