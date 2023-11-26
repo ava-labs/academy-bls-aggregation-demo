@@ -35,8 +35,9 @@
 
     <div class="space-y-4">
       <TitleCard title="Verify" />
-      <p>Anyone, that has access to your Public Key can now verify the signature of the Message. Therefore, they can
-        ensure the Authenticity, Non-Repudiation and Integrity of the Message.</p>
+      <p>Anyone, that has access to your Public Key corresponding to the Private Key used for signing the message can now
+        verify the signature of the Message. Therefore, the Authenticity, Non-Repudiation and Integrity of the Message can
+        be trusted.</p>
       <VerifyView />
     </div>
 
