@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="flex flex-wrap flex-row justify-center gap-1 pb-5 mx-10">
+    <div class="flex flex-wrap flex-row justify-center gap-1 pb-5">
       <mainButton @click="generateKey" title="Generate Keys" />
     </div>
 

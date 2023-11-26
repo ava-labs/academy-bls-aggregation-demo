@@ -8,7 +8,7 @@
       <p>Let's explore the use of a Multi-Signature Scheme. We'll take the following steps:</p>
       <ul class="space-y-2 list-disc list-inside">
         <li>
-          <span class="font-bold">Generate Two Key Pair:</span> We will generate two key pairs.
+          <span class="font-bold">Generate Two Key Pairs:</span> We will generate two key pairs.
         </li>
         <li>
           <span class="font-bold">Sign Message:</span> We create two Signatures of the same Message with the two
@@ -32,9 +32,9 @@
       <p>Start by generating two Key Pairs each consisting of a Public and Secret Key. In a real-world setting these key
         pairs would be created by independent actors, but for the sake of the exercise we will play multiple actors here.
       </p>
-      <div class="flex flex-auto space-x-12">
-        <GenerateView class="flex-auto" />
-        <GenerateView class="flex-auto" />
+      <div class="flex flex-auto space-x-6">
+        <GenerateView class="flex-1" />
+        <GenerateView class="flex-1" />
       </div>
     </div>
 
@@ -43,7 +43,7 @@
       <p>Now use the generated Secret Keys to sign a Message. Make sure to pick exactly the same Message for both
         Signatures, e.g. "Per consensum ad
         astra".</p>
-      <div class="flex flex-auto space-x-12">
+      <div class="flex flex-auto space-x-6">
         <SignView class="flex-auto" />
         <SignView class="flex-auto" />
       </div>

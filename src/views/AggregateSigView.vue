@@ -1,12 +1,12 @@
 <template>
-  <div class="flex flex-auto space-x-12">
+  <div class="flex flex-auto space-x-6">
     <div class="flex-auto">
       <label for="signatureA" class="block mb-2 text-xl font-medium text-gray-900 dark:text-white">Signature</label>
       <div class="relative">
         <textarea id="signatureA" rows="4"
           class="block p-2.5 w-full text-xl text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-red-500 focus:border-red-500"
           v-model="signatureA">
-                                                                                            </textarea>
+                                                                                              </textarea>
         <button
           class="text-white absolute right-2.5 top-2.5 bg-avalanche-red hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-md px-4 py-2"
           @click="this.pasteSignatureA">
@@ -21,7 +21,7 @@
         <textarea id="sigantureB" rows="4"
           class="block p-2.5 w-full text-xl text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-red-500 focus:border-red-500"
           v-model="signatureB">
-                                                                                              </textarea>
+                                                                                                </textarea>
         <button
           class="text-white absolute right-2.5 top-2.5 bg-avalanche-red hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-md px-4 py-2"
           @click="this.pasteSignatureB">
@@ -41,7 +41,7 @@
       <textarea id="siganture" rows="4"
         class="block p-2.5 w-full text-xl text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-red-500 focus:border-red-500"
         :value="this.aggregatedSignature">
-                                                          </textarea>
+                                                            </textarea>
       <button
         class="text-white absolute right-2.5 top-2.5 bg-avalanche-red hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-md px-4 py-2"
         @click="this.copyAggregatedSignature">
