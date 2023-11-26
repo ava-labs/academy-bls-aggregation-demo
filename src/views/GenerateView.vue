@@ -43,14 +43,9 @@ import { defineComponent } from "vue";
 // Components
 import mainButton from "@/components/mainButton.vue";
 import helpers from "@/helperFunctions/helperFunctions.js";
-import { useToast } from "vue-toastification";
 
 export default defineComponent({
   name: "GenerateView",
-  setup() {
-    const toast = useToast();
-    return { toast };
-  },
   data() {
     return {
       publicKeyHex: "",
@@ -74,11 +69,9 @@ export default defineComponent({
     },
     copyPublicKey() {
       navigator.clipboard.writeText(this.publicKeyHex);
-      this.toast.success("Copied Public Key to Clipboard");
     },
     copyPrivateKey() {
       navigator.clipboard.writeText(this.privateKeyHex);
-      this.toast.success("Copied Secret Key to Clipboard");
     },
   },
 

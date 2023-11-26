@@ -1,77 +1,47 @@
 <template>
-    <div class="flex flex-wrap flex-row justify-center gap-1 pb-5 mx-10">
-      <mainButton v-if="!privKey" @click="generateKey" title="🔑 Generate Keys" />
-    </div>
+  <div class="flex flex-wrap flex-row justify-center gap-1 pb-5 mx-10">
+    <mainButton v-if="!privKey" @click="generateKey" title="🔑 Generate Keys" />
+  </div>
 
-    <div v-if="this.signed" class="flex justify-center text-2xl pb-2">Signature</div>
-    <TextDisplay class="mb-6" :displayText=this.pubKey>
-        <template #Preload>
-        <p>Public Key:</p>
-      </template>
-    </TextDisplay>
+  <div v-if="this.signed" class="flex justify-center text-2xl pb-2">Signature</div>
+  <TextDisplay class="mb-6" :displayText=this.pubKey>
+    <template #Preload>
+      <p>Public Key:</p>
+    </template>
+  </TextDisplay>
+</template>
+  
+<script>
+import { defineComponent } from "vue";
+import helpers from '@/helperFunctions/helperFunctions.js'
 
-  </template>
-  
-  <script>
-  import { defineComponent } from "vue";
-  import helpers from '@/helperFunctions/helperFunctions.js'
 
-  
-  // Components
-  import mainButton from "@/components/mainButton";
-  import TextDisplay from "./TextDisplay";
-  import { useToast } from "vue-toastification";
-  
-  export default defineComponent({
-    name: "keyImportOrGenerate",
-    setup() {
+// Components
+import mainButton from "@/components/mainButton";
+import TextDisplay from "./TextDisplay";
+import { useToast } from "vue-toastification";
+
+export default defineComponent({
+  name: "keyImportOrGenerate",
+  setup() {
     const toast = useToast();
     return { toast };
   },
-    data() {
+  data() {
     return {
-      keysPresent:false,
-      privKey:"",
-      pubKey:"",
-      keyOutput : {
+      keysPresent: false,
+      privKey: "",
+      pubKey: "",
+      keyOutput: {
         publicKey: "",
         privateKey: "",
       },
-      keysGenerated : false 
+      keysGenerated: false
     };
   },
   methods: {
-    processKey(event) {
-      var rawFileData = event.target.files[0];
 
-      var reader = new FileReader();
-      reader.readAsText(rawFileData, 'UTF-8');
-
-      // here we tell the reader what to do when it's done reading...
-      reader.onload = readerEvent => {
-          var rawFileData = readerEvent.target.result; // this is the content!
-
-          try {
-          this.privKey = JSON.parse(rawFileData).privateKey
-          this.pubKey = JSON.parse(rawFileData).publicKey
-          this.keysPresent = true
-
-          
-          this.$emit('pubKey', this.pubKey)
-          this.$emit('privKey', this.privKey)
-
-          this.keysPresent = true
-          this.$emit('keysPresentStatus', this.keysPresent)
-
-          this.toast.success("Key Imported Successfully");
-          } catch (error) {
-            this.toast.error("Key improperly formatted, please import a JSON encoded keyfile");
-          }
-          
-      }
-   },
-
-   generateKey() {
+    generateKey() {
       // Generate Randomness and convert into BLS key
       var array = new Uint8Array(32);
       var privateKey = crypto.getRandomValues(array);
@@ -83,7 +53,7 @@
         privateKey: this.privKey
       };
 
-      
+
       this.$emit('pubKey', this.pubKey)
       this.$emit('privKey', this.privKey)
 
@@ -98,10 +68,10 @@
     },
 
   },
-  
-    components: {
-      mainButton,
-      TextDisplay
-    },
-  });
-  </script>
+
+  components: {
+    mainButton,
+    TextDisplay
+  },
+});
+</script>

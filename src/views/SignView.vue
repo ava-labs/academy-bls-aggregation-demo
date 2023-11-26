@@ -25,7 +25,7 @@
         <textarea id="message" v-model="message" rows="4"
           class="block p-2.5 w-full text-lg text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-red-500 focus:border-red-500 "
           placeholder="Write your message here...">
-                                  </textarea>
+                                          </textarea>
         <button
           class="text-white absolute right-2.5 top-2.5 bg-avalanche-red hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-md px-4 py-2"
           @click="this.copyMessage">
@@ -45,7 +45,7 @@
         <textarea id="siganture" rows="4"
           class="block p-2.5 w-full text-xl text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-red-500 focus:border-red-500"
           :value="this.signature">
-                                          </textarea>
+                                                  </textarea>
         <button
           class="text-white absolute right-2.5 top-2.5 bg-avalanche-red hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-md px-4 py-2"
           @click="this.copySignature">
@@ -95,24 +95,20 @@ export default defineComponent({
       }
       this.signature = helpers.bufferToHex(bufferSignature);
       this.signed = true;
-      this.toast.success("Message signed successfully");
 
       await this.$nextTick();
     },
 
     async pastePrivateKey() {
       this.privKey = await navigator.clipboard.readText();
-      this.toast.success("Pasted Private Key");
     },
 
     copySignature() {
       navigator.clipboard.writeText(this.signature);
-      this.toast.success("Copied Public Key to Clipboard");
     },
 
     copyMessage() {
       navigator.clipboard.writeText(this.message);
-      this.toast.success("Copied Message to Clipboard");
     },
   },
 

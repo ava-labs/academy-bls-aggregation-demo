@@ -26,7 +26,7 @@
       <textarea id="siganture" rows="4"
         class="block p-2.5 w-full text-xl text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-red-500 focus:border-red-500"
         v-model="signature">
-                                                                                            </textarea>
+                                                                                                </textarea>
       <button
         class="text-white absolute right-2.5 top-2.5 bg-avalanche-red hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-md px-4 py-2"
         @click="this.pasteSignature">
@@ -41,7 +41,7 @@
       <textarea id="message" v-model="message" rows="4"
         class="block p-2.5 w-full text-lg text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-red-500 focus:border-red-500 "
         placeholder="Write your message here...">
-                                                                                            </textarea>
+                                                                                                </textarea>
       <button
         class="text-white absolute right-2.5 top-2.5 bg-avalanche-red hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-md px-4 py-2"
         @click="this.pasteMessage">
@@ -102,17 +102,14 @@ export default defineComponent({
   methods: {
     async pastePublicKey() {
       this.pubKey = await navigator.clipboard.readText();
-      this.toast.success("Pasted Public Key");
     },
 
     async pasteMessage() {
       this.message = await navigator.clipboard.readText();
-      this.toast.success("Pasted Message");
     },
 
     async pasteSignature() {
       this.signature = await navigator.clipboard.readText();
-      this.toast.success("Pasted Signature");
     },
 
     async validate() {
@@ -123,7 +120,6 @@ export default defineComponent({
             this.pubKey,
             this.message
           );
-          this.toast.success("Signature validated");
         } catch (error) {
           this.isValid = false;
         }

@@ -6,7 +6,7 @@
         <textarea id="publicKeyA" rows="4"
           class="block p-2.5 w-full text-xl text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-red-500 focus:border-red-500"
           v-model="publicKeyA">
-                                                                                                          </textarea>
+                                                                                                                </textarea>
         <button
           class="text-white absolute right-2.5 top-2.5 bg-avalanche-red hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-md px-4 py-2"
           @click="this.pastePublicKeyA">
@@ -40,7 +40,7 @@
       <textarea id="aggregatedPublicKey" rows="4"
         class="block p-2.5 w-full text-xl text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-red-500 focus:border-red-500"
         :value="this.aggregatedKey">
-                                                                        </textarea>
+                                                                              </textarea>
       <button
         class="text-white absolute right-2.5 top-2.5 bg-avalanche-red hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-md px-4 py-2"
         @click="this.copyAggregatedKey">
@@ -80,12 +80,10 @@ export default defineComponent({
 
     async pastePublicKeyA() {
       this.publicKeyA = await navigator.clipboard.readText();
-      this.toast.success("Pasted Public Key");
     },
 
     async pastePublicKeyB() {
       this.publicKeyB = await navigator.clipboard.readText();
-      this.toast.success("Pasted Public Key");
     },
 
     async aggregateKeys() {
@@ -104,13 +102,11 @@ export default defineComponent({
         return;
       }
 
-      this.toast.success("Keys aggregated successfully");
       this.keyDisplay = true;
     },
 
     copyAggregatedKey() {
       navigator.clipboard.writeText(this.aggregatedKey);
-      this.toast.success("Copied Public Key to Clipboard");
     },
   },
 });

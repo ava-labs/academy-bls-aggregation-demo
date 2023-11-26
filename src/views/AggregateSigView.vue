@@ -6,7 +6,7 @@
         <textarea id="signatureA" rows="4"
           class="block p-2.5 w-full text-xl text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-red-500 focus:border-red-500"
           v-model="signatureA">
-                                                                                                  </textarea>
+                                                                                                        </textarea>
         <button
           class="text-white absolute right-2.5 top-2.5 bg-avalanche-red hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-md px-4 py-2"
           @click="this.pasteSignatureA">
@@ -21,7 +21,7 @@
         <textarea id="sigantureB" rows="4"
           class="block p-2.5 w-full text-xl text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-red-500 focus:border-red-500"
           v-model="signatureB">
-                                                                                                    </textarea>
+                                                                                                          </textarea>
         <button
           class="text-white absolute right-2.5 top-2.5 bg-avalanche-red hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-md px-4 py-2"
           @click="this.pasteSignatureB">
@@ -41,7 +41,7 @@
       <textarea id="siganture" rows="4"
         class="block p-2.5 w-full text-xl text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-red-500 focus:border-red-500"
         :value="this.aggregatedSignature">
-                                                                </textarea>
+                                                                      </textarea>
       <button
         class="text-white absolute right-2.5 top-2.5 bg-avalanche-red hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-md px-4 py-2"
         @click="this.copyAggregatedSignature">
@@ -81,17 +81,14 @@ export default defineComponent({
 
     async pasteSignatureA() {
       this.signatureA = await navigator.clipboard.readText();
-      this.toast.success("Pasted Signature");
     },
 
     async pasteSignatureB() {
       this.signatureB = await navigator.clipboard.readText();
-      this.toast.success("Pasted Signature");
     },
 
     copyAggregatedSignature() {
       navigator.clipboard.writeText(this.aggregatedSignature);
-      this.toast.success("Copied Aggregated Signature to Clipboard");
     },
 
     async aggregateSignatures() {
@@ -111,7 +108,6 @@ export default defineComponent({
         return
       }
 
-      this.toast.success("Signatures aggregated successfully");
       this.signatureDisplay = true
     }
 
