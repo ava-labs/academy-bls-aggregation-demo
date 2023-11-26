@@ -70,7 +70,7 @@
       <p>Anyone, that has access to the aggregated Public Key can now verify the Signature of the Message. Therefore, the
         Authenticity, Non-Repudiation and Integrity of the Message can be trusted in an efficient for a large number of
         signers.</p>
-      <VerifyView />
+      <VerifyView aggregated="true" />
     </div>
 
     <div class="space-y-4 mb-20">

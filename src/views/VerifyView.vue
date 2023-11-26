@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col space-y-3 mb-5 relative">
     <label for="public-key" class="block text-xl font-medium text-gray-900 dark:text-white">
-      🔑 Public Key
+      🔑 <span v-if="aggregated">Aggregated</span> Public Key
     </label>
     <div class="relative">
       <input v-model="pubKey" type="text" id="public-key"
@@ -19,12 +19,14 @@
   </div>
 
   <div class="flex flex-col space-y-3 mb-5 relative">
-    <label for="signature" class="block text-xl font-medium text-gray-900 dark:text-white">🖋️ Signature</label>
+    <label for="signature" class="block text-xl font-medium text-gray-900 dark:text-white">
+      🖋️ <span v-if="aggregated">Aggregated</span> Signature
+    </label>
     <div class="relative">
       <textarea id="siganture" rows="4"
         class="block p-2.5 w-full text-xl text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-red-500 focus:border-red-500"
         v-model="signature">
-                                                                                </textarea>
+                                                                                            </textarea>
       <button
         class="text-white absolute right-2.5 top-2.5 bg-avalanche-red hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-md px-4 py-2"
         @click="this.pasteSignature">
@@ -39,7 +41,7 @@
       <textarea id="message" v-model="message" rows="4"
         class="block p-2.5 w-full text-lg text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-red-500 focus:border-red-500 "
         placeholder="Write your message here...">
-                                                                                </textarea>
+                                                                                            </textarea>
       <button
         class="text-white absolute right-2.5 top-2.5 bg-avalanche-red hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-md px-4 py-2"
         @click="this.pasteMessage">
@@ -77,6 +79,12 @@ export default defineComponent({
   setup() {
     const toast = useToast();
     return { toast };
+  },
+  props: {
+    aggregated: {
+      type: Boolean,
+      default: false
+    }
   },
   data() {
     return {
