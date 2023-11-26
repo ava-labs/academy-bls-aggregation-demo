@@ -1,12 +1,12 @@
 <template>
   <div class="flex flex-auto space-x-6">
     <div class="flex-auto">
-      <label for="publicKeyA" class="block mb-2 text-xl font-medium text-gray-900 dark:text-white">Signature</label>
+      <label for="publicKeyA" class="block mb-2 text-xl font-medium text-gray-900 dark:text-white">🔑 Public Key</label>
       <div class="relative">
         <textarea id="publicKeyA" rows="4"
           class="block p-2.5 w-full text-xl text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-red-500 focus:border-red-500"
           v-model="publicKeyA">
-                                                                                                      </textarea>
+                                                                                                          </textarea>
         <button
           class="text-white absolute right-2.5 top-2.5 bg-avalanche-red hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-md px-4 py-2"
           @click="this.pastePublicKeyA">
@@ -16,7 +16,7 @@
     </div>
 
     <div class="flex-auto">
-      <label for="publicKeyB" class="block mb-2 text-xl font-medium text-gray-900 dark:text-white">Signature</label>
+      <label for="publicKeyB" class="block mb-2 text-xl font-medium text-gray-900 dark:text-white">🔑 Public Key</label>
       <div class="relative">
         <textarea id="publicKeyB" rows="4"
           class="block p-2.5 w-full text-xl text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-red-500 focus:border-red-500"
@@ -40,7 +40,7 @@
       <textarea id="aggregatedPublicKey" rows="4"
         class="block p-2.5 w-full text-xl text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-red-500 focus:border-red-500"
         :value="this.aggregatedKey">
-                                                                    </textarea>
+                                                                        </textarea>
       <button
         class="text-white absolute right-2.5 top-2.5 bg-avalanche-red hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-md px-4 py-2"
         @click="this.copyAggregatedKey">
@@ -106,9 +106,6 @@ export default defineComponent({
 
       this.toast.success("Keys aggregated successfully");
       this.keyDisplay = true;
-
-      await this.$nextTick();
-      window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
     },
 
     copyAggregatedKey() {

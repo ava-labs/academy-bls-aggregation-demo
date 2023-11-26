@@ -6,7 +6,7 @@
 
     <div class="mb-5 relative" v-if="publicKeyHex">
       <label for="public-key" class="block mb-2 text-xl font-medium text-gray-900 dark:text-white">
-        Public Key
+        🔑 Public Key
       </label>
       <input :value="publicKeyHex" type="text" id="private-key"
         class="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-lg focus:ring-red-500 focus:border-red-500 "
@@ -23,7 +23,7 @@
 
     <div class="mb-5 relative" v-if="privateKeyHex">
       <label for="private-key" class="block mb-2 text-xl font-medium text-gray-900 dark:text-white">
-        Secret Key
+        🗝️ Secret Key
       </label>
       <input :value="privateKeyHex" type="text" id="private-key"
         class="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-lg focus:ring-red-500 focus:border-red-500"
